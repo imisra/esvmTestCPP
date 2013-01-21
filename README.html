@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>esvmTestCPP</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="esvmTestCPP"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="16th December 2012"/>
+<meta name="author" content="Ishan Misra"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">esvmTestCPP</h1>
+
+<p>Version: 0.1 alpha<sup>2</sup>
+Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com/imisra/esvmTestCPP</a>
+</p>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+  <code>esvmTestCPP</code> is an implementation of the MATLAB Exemplar
+  SVM<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup> testing pipeline
+  written in <code>C++</code>. Computationally intensive parts were written using
+  ISPC <sup><a class="footref" name="fnr.2" href="#fn.2">2</a></sup> for SIMD performance.
+</p>
+<p>
+  If you use this code, please cite our tech-report <sup><a class="footref" name="fnr.3" href="#fn.3">3</a></sup>. The code
+  can be downloaded freely from github <sup><a class="footref" name="fnr.4" href="#fn.4">4</a></sup>.
+</p>
+<p>
+  One may also use this code just for computing HOG features or
+  performing spatial-convolution (without anything to do with Exemplar
+  SVMs). The code was designed to be modular to allow for such a
+  use-case.
+</p>
+<p>
+  If you are using this pipeline for testing, it is assumed that you
+  have basic familiarity with the MATLAB esvm code.
+</p>
+<p>
+  <b>Disclaimer</b>: This is alpha quality software. (Notice the alpha<sup>2</sup>
+   in the version number). Alpha is Latin for "doesn't work and may
+   burn your computer". The code hasn't been tested very thoroughly,
+   and we will try to fix any bugs that you report.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Requirements</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+  The code depends on the following open-source projects
+</p><ol>
+<li>ISPC (<a href="http://ispc.github.com">http://ispc.github.com</a>) : For optimized SIMD code generation
+</li>
+<li>OpenCV (<a href="http://opencv.willowgarage.com">http://opencv.willowgarage.com</a>) : For Image I/O.
+</li>
+<li>OpenMP and <code>pthreads</code> : For spawning threads (in ISPC as well as
+     <code>omp parallel for</code> constructs).   
+</li>
+</ol>
+
+
+<p>
+  It requires a <code>x86</code> or <code>x86-64</code> ISA compatible machine. The code is
+  released for a <code>GNU/Linux</code> compatible Operating System. There are a
+  few dependencies on the <code>GNU C Compiler (GCC)</code> mainly due to <code>__expect</code>
+  macros defined in <code>esvm_utils.h</code>. The dependencies on <code>GNU/Linux</code>
+  and <code>GCC</code> will be resolved in future releases.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Setup</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<ol>
+<li>ISPC Setup : The code base includes the ISPC binary for
+     <code>x86-64</code>. (version 1.3.0 as of this writing). So nothing special
+     needs to be done for this setup. If you are using a 32 bit
+     Operating System, you will need to compile ISPC from source. As
+     of this writing pre-built 32-bit binaries are not available from
+     the ISPC github page.
+</li>
+<li>OpenCV : Any version <code>2.x</code> should suffice. In reality, any
+     version above <code>1.2</code> will be fine, but may need a change in the
+     includes (since OpenCV <code>2.x</code> has a different way of including
+     header files).
+</li>
+<li><code>demos/Makefile</code>: The Makefile in the <code>demos</code> directory compiles
+     demos. One may need to change architecture specific flags like
+     <code>mavx</code>, <code>corei7-avx</code> etc. depending on the exact CPU model. These
+     flags are marked separately for convenience (as <code>ARCH</code>
+     flags). Discarding architecture specific flags generally affects
+     performance, but maybe useful if you just want to try out the
+     code.
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Directory structure</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+
+
+<pre class="example">.
+├── common: ISPC 64-bit Linux binary and internal files (Task system)
+├── demos: contains demo files for HOG, Exemplar testing.
+├── internal
+├── matlab-files: easy conversion between HOG format in MATLAB/C++ codebases
+└── sample-data: sample data for demo files to run
+    └── exemplars
+        ├── exemplar-mat-files
+        └── exemplar-txt-files
+
+8 directories
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Getting Started</h2>
+<div class="outline-text-2" id="text-5">
+
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Input format for Exemplars</h3>
+<div class="outline-text-3" id="text-5-1">
+
+<p>   Suppose you have \(C\) classes, and for each class you have \(N_{i}\)
+   (\(i=1\ldots C\)) exemplars. The input format as of this version is
+</p><ol>
+<li><code>descFile</code>: This is a file containing names of \(C\) classes
+      followed by the name of a <code>classDescFile</code>. The format is
+      <code>ClassName&lt;space&gt;classDescFileName&lt;newline&gt;</code>. 
+</li>
+<li><code>classDescFile</code>: This file contains 4 fields per line. The first
+      field is the path to the <code>txt</code> file containing the exemplar
+      data, the second and third field are the number of rows and
+      columns respectively. The fourth field is the offset (\(b\) in the
+      SVM decision function \(w^{T}x+b\)) which is exemplar-specific.
+</li>
+</ol>
+
+
+</div>
+
+<div id="outline-container-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> Generating the exemplar data files</h4>
+<div class="outline-text-4" id="text-5-1-1">
+
+<p>   The exemplar data is written in ASCII files. These files can be
+   generated by using the <code>writeHogTxt</code> function in C++. It is also
+   expected that the user will have trained exemplars in the form of
+   <code>.mat</code> files from the MATLAB esvm code. In order to convert these
+   <code>.mat</code> files and generate the necessary <code>descFile</code> and
+   <code>classDescFiles</code>, there are helper scripts in the <code>matlab-files</code>
+   directory.  The script <code>convert_mat_txt.m</code> is provided for
+   reference. The functions <code>readHogTxt.m</code> and <code>writeHogTxt.m</code> are
+   used for reading and writing HOG features or exemplars (since
+   exemplars and HOG features are both 3D arrays of the form \(m\times
+   n\times 31\)).
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Parameters</h3>
+<div class="outline-text-3" id="text-5-2">
+
+<p>   The parameters for exemplar testing can be put together in the
+   <code>struct esvmParameters</code>. A user can get default parameters by
+   calling the function <code>esvmDefaultParameters</code>. These default
+   parameters correspond to default parameters from the MATLAB esvm
+   code. The following are the
+   main fields to be concerned with
+</p><ol>
+<li><code>levelsPerOctave</code>: Defines the number of times an image is
+      resized between two scalings of 1/2. A larger value
+      means tighter bounding box (in terms of "where exactly is the
+      object ?"). An empirical maximum and minimum are between 10
+      and 3. The actual value is application specific.
+</li>
+<li><code>maxHogLevels</code>: Maximum number of HOG levels computed. The
+      actual value also depends on <code>minHogDim</code> and <code>minImageScale</code>. 
+</li>
+<li><code>minHogDim</code>: Minimum dimension of HOG before any sort of
+      zero-padding.
+</li>
+<li><code>minImageScale</code>: A number between 0 and 1. Determines the
+      minimum scaling factor for resizing the image.
+</li>
+<li><code>useMexResize</code>: A boolean parameter. When set to true (the
+      default) image resizing uses a C++ version from the original
+      MATLAB esvm code. Setting this to false, uses the native OpenCV
+      image resizing which is faster.
+</li>
+<li><code>detectionThreshold</code>: A number between 0 and 1. The threshold
+      for exemplar detection. A higher threshold means lesser false
+      positives (but also a lower detection rate).
+</li>
+<li><code>nmsOverlapThreshold</code>: A number between 0 and 1. The
+      non-maximal-suppression threshold. Decides when to consider two
+      overlapping detections as two different detections.
+</li>
+<li><code>maxWindowsPerExemplar</code>: Maximum number of detections per
+      exemplar.
+</li>
+<li><code>maxTotalBoxesPerExemplar</code>: This value is used for
+      pre-allocation of memory. It should be greater than
+      <code>maxWindowsPerExemplar</code>.
+</li>
+<li><code>userTasks</code>: Maximum number of threads to spawn. Usually setting
+       this number equal to 1 or 2 times the number of physical cores
+       gives a reasonable performance.
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Bounding box information</h3>
+<div class="outline-text-3" id="text-5-3">
+
+<p>   The bounding boxes are stored in <code>struct esvmBoxes</code>. It internally
+   stores them in a <code>float</code> array. It is recommended to use
+   pre-defined macros for accessing/copying the bounding boxes. These
+   are defined in <code>esvm_utils.h</code>. The <code>demos</code> directory contains an
+   example showing how to use them.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Precision issues</h3>
+<div class="outline-text-3" id="text-5-4">
+
+<p>   Detection precision depends on which image resize function is
+   used. As far as we can tell, it is best to use the same resize function
+   for training and testing. The default option of <code>useMexResize</code>,
+   uses the resize function from the MATLAB implementation of
+   Exemplar-SVM. If speed is an issue, then one can switch over to the
+   OpenCV resize function, but the detection results will differ.
+</p>
+<p>
+   Another thing to note is that the HOG implementation uses <code>float</code>
+   precision for computing the features (as opposed to <code>double</code> in the
+   MATLAB HOG implementation of Pedro Felzenszwalb).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> Performance characteristics</h3>
+<div class="outline-text-3" id="text-5-5">
+
+<p>   Read the Tech-Report for more details on how the performance
+   compares to the MATLAB testing pipeline.
+</p></div>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> FAQs</h2>
+<div class="outline-text-2" id="text-6">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> You keep mentioning <code>C++</code>, but all of your programming is <code>C</code> style!</h3>
+<div class="outline-text-3" id="text-6-1">
+
+<p>   Correct. I mention <code>C++</code> because I did use a few <code>STL</code>
+   libraries. There were a few headaches using <code>C++</code>
+   classes and our flavor of SIMD optimizations (ISPC).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Can I use this for HOG computation only ?</h3>
+<div class="outline-text-3" id="text-6-2">
+
+<p>   Yes. Check out examples (<code>demo01</code>, <code>demo02</code>) in the <code>demo</code> directory.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Can I use this for Convolution computation only ?</h3>
+<div class="outline-text-3" id="text-6-3">
+
+<p>   Yes. Check out examples (<code>demo00</code>) in the <code>demos</code> directory.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> What HOG feature do you compute ?</h3>
+<div class="outline-text-3" id="text-6-4">
+
+<p>   It is based on the paper
+</p><ul>
+<li>P. F. Felzenszwalb, R. B. Girshick, D. McAllester, and D. Ramanan,
+    "<i>Object detection with discriminatively trained part based models</i>",
+    PAMI 2010
+</li>
+</ul>
+
+
+<p>
+It is different from the HOG popularized by the "Pedestrian detection"
+   application from Navneet Dalal's paper (N. Dalal and B. Triggs,
+   "<i>Histograms of oriented gradients for human detection</i>", CVPR
+   2005).
+</p>
+<p>
+   This latest reincarnation of the HOG feature is generally considered
+    to be more discriminative than the earlier versions, for object
+    detection tasks.  
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> Is this library thread-safe ?</h3>
+<div class="outline-text-3" id="text-6-5">
+
+<p>   Unfortunately, no. The reason has to do with the ISPC task
+   implementation. A request for changing this has been filed (
+   <a href="https://groups.google.com/forum/#!topic/ispc-users/FgQgCVFMWTs">https://groups.google.com/forum/#!topic/ispc-users/FgQgCVFMWTs</a>) and
+   as soon as this gets fixed, the library should be thread-safe.
+</p></div>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Code TODOs</h2>
+<div class="outline-text-2" id="text-7">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> High priority</h3>
+<div class="outline-text-3" id="text-7-1">
+
+<ul>
+<li>Better I/O format for Exemplars. This will involve changing the
+  <code>read/write</code> functions in MATLAB and C++. No changes expected in the
+  API. I need feedback from users as to what they would like!
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> Low priority</h3>
+<div class="outline-text-3" id="text-7-2">
+
+<ul>
+<li>Fix dependency issues on GCC and Linux.
+</li>
+<li>32 bit binary for ISPC ?
+</li>
+<li><code>paramters-&gt;flipImage</code> to be implemented.
+</li>
+</ul>
+
+
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> <a href="https://github.com/abhi2610/exemplarsvm">https://github.com/abhi2610/exemplarsvm</a>
+</p>
+
+<p class="footnote"><sup><a class="footnum" name="fn.2" href="#fnr.2">2</a></sup> <a href="http://ispc.github.com/">http://ispc.github.com/</a>
+</p>
+
+<p class="footnote"><sup><a class="footnum" name="fn.3" href="#fnr.3">3</a></sup> HOG and
+  Spatial Convolution on SIMD Architecture - Ishan Misra, Abhinav
+  Shrivastava, Martial Hebert. CMU Tech Report XXXX (2013)
+</p>
+
+<p class="footnote"><sup><a class="footnum" name="fn.4" href="#fnr.4">4</a></sup> <a href="https://github.com/imisra/esvmTestCPP">https://github.com/imisra/esvmTestCPP</a>
+</p></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 16th December 2012</p>
+<p class="author">Author: Ishan Misra</p>
+<p class="email"><a href="mailto:imisra-at-andrew.cmu.edu">imisra-at-andrew.cmu.edu</a></p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
