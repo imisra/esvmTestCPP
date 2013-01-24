@@ -34,8 +34,8 @@ void handler(int sig) {
 int main(int argc, char *argv[])
 {
 	
-	const char *imageName = "../sample-data/black_umbrella.jpg";
-	const char *descFile = "../sample-data/exemplars/umbrella-desc-file";
+	const char *imageName = "../sample-data/aeroplane.jpg";
+	const char *descFile = "../sample-data/exemplars/exemplar-txt-files-list";
 	int numExemplars = 11;
 	
 	//this image is loaded only for display purposes. SIMEWrapper loads its own image.
@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
 	
 	//get default parameters for classification
 	esvmParameters *params = esvmDefaultParameters();
+	params->detectionThreshold = -0.97;
 	
 	esvmOutput *output = esvmSIMEWrapper(params,imageName,model);
 	
@@ -91,8 +92,9 @@ int main(int argc, char *argv[])
 	cvShowImage("hog-pipeline",img);
 	cvWaitKey(0);
 	cvDestroyWindow("hog-pipeline");
-	cvSaveImage("apple-results.png",img);
+	cvSaveImage("detect-results.png",img);
 	cvReleaseImage(&img);
+	printf("Saved detections as detect-results.png\n");
 	
 
 	return 0;

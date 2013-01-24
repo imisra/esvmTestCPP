@@ -7,17 +7,19 @@
 Version: 0.1 alpha^{2}
 Project Page: https://github.com/imisra/esvmTestCPP
 
+* Tech Report
+  The details and aim of this project can be found in our tech
+  report. Please cite it if you use this code for any purpose. The
+  code can be downloaded freely from our [[https://github.com/imisra/esvmTestCPP][github project page]].
+  
+  Ishan Misra, Abhinav Shrivastava, Martial Hebert - "/HOG and Spatial
+  Convolution on SIMD Architecture/" CMU Tech Report XXXX (2013)
+
 * Introduction
 
-  =esvmTestCPP= is an implementation of the MATLAB Exemplar
-  SVM[fn::https://github.com/abhi2610/exemplarsvm] testing pipeline
-  written in =C++=. Computationally intensive parts were written using
-  ISPC [fn::http://ispc.github.com/] for SIMD performance.
-
-  If you use this code, please cite our tech-report [fn::HOG and
-  Spatial Convolution on SIMD Architecture - Ishan Misra, Abhinav
-  Shrivastava, Martial Hebert. CMU Tech Report XXXX (2013)]. The code
-  can be downloaded freely from github [fn::https://github.com/imisra/esvmTestCPP].
+  =esvmTestCPP= is an implementation of the MATLAB [[https://github.com/abhi2610/exemplarsvm][Exemplar-SVM]]
+  testing pipeline written in =C++=. Computationally intensive parts
+  were written using [[http://ispc.github.com/][ISPC]] for SIMD performance.
 
   One may also use this code just for computing HOG features or
   performing spatial-convolution (without anything to do with Exemplar
@@ -71,7 +73,7 @@ Project Page: https://github.com/imisra/esvmTestCPP
 #tree -d
 ##+end_src
   
-#+begin_example
+#+BEGIN_EXAMPLE
 .
 ├── common: ISPC 64-bit Linux binary and internal files (Task system)
 ├── demos: contains demo files for HOG, Exemplar testing.
@@ -83,7 +85,7 @@ Project Page: https://github.com/imisra/esvmTestCPP
         └── exemplar-txt-files
 
 8 directories
-#+end_example
+#+END_EXAMPLE
 
 * Getting Started  
 ** Input format for Exemplars
@@ -187,14 +189,14 @@ Project Page: https://github.com/imisra/esvmTestCPP
     "/Object detection with discriminatively trained part based models/",
     PAMI 2010
 
-It is different from the HOG popularized by the "Pedestrian detection"
+   It is different from the HOG popularized by the "Pedestrian detection"
    application from Navneet Dalal's paper (N. Dalal and B. Triggs,
    "/Histograms of oriented gradients for human detection/", CVPR
    2005).
 
-   This latest reincarnation of the HOG feature is generally considered
-    to be more discriminative than the earlier versions, for object
-    detection tasks.  
+   This latest reincarnation of the HOG feature is generally
+    considered to be more discriminative than the earlier versions,
+    for object detection tasks.
    
 ** Is this library thread-safe ?
    Unfortunately, no. The reason has to do with the ISPC task
@@ -207,6 +209,7 @@ It is different from the HOG popularized by the "Pedestrian detection"
   =read/write= functions in MATLAB and C++. No changes expected in the
   API. I need feedback from users as to what they would like!
 ** Low priority  
-- Fix dependency issues on GCC and Linux.
-- 32 bit binary for ISPC ?
-- =paramters->flipImage= to be implemented.
+- Fix dependency issues on GCC and Linux. The =__expect= macros, and
+  =memalign= calls need to be changed.
+- Include a 32 bit binary for ISPC ?
+- =parameters->flipImage= to be implemented.
