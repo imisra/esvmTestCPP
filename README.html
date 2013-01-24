@@ -138,10 +138,13 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 </p>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Tech Report</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> HOG and Spatial Convolution on SIMD Architecture</h2>
 <div class="outline-text-2" id="text-1">
 
-<p>  The details and aim of this project can be found in our tech
+<p>  Authors: Ishan Misra, Abhinav Shrivastava, Martial Hebert.
+</p>
+<p>  
+  The details and aim of this project can be found in our tech
   report. Please cite it if you use this code for any purpose. The
   code can be downloaded freely from our <a href="https://github.com/imisra/esvmTestCPP">github project page</a>.
 </p>
@@ -430,8 +433,19 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 </div>
 
 <div id="outline-container-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> You keep mentioning <code>C++</code>, but all of your programming is <code>C</code> style!</h3>
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> The detection demos aren't even close to perfect</h3>
 <div class="outline-text-3" id="text-7-1">
+
+<p>   Yes. It is just a demo. You will need to adjust the thresholds
+   depending on your particular dataset/exemplars.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> You keep mentioning <code>C++</code>, but all of your programming is <code>C</code> style!</h3>
+<div class="outline-text-3" id="text-7-2">
 
 <p>   Correct. I mention <code>C++</code> because I did use a few <code>STL</code>
    libraries. There were a few headaches using <code>C++</code>
@@ -441,9 +455,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> Can I use this for HOG computation only ?</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Can I use this for HOG computation only ?</h3>
+<div class="outline-text-3" id="text-7-3">
 
 <p>   Yes. Check out examples (<code>demo01</code>, <code>demo02</code>) in the <code>demo</code> directory.
 </p>
@@ -451,9 +465,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-3" class="outline-3">
-<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Can I use this for Convolution computation only ?</h3>
-<div class="outline-text-3" id="text-7-3">
+<div id="outline-container-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> Can I use this for Convolution computation only ?</h3>
+<div class="outline-text-3" id="text-7-4">
 
 <p>   Yes. Check out examples (<code>demo00</code>) in the <code>demos</code> directory.
 </p>
@@ -461,9 +475,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-4" class="outline-3">
-<h3 id="sec-7-4"><span class="section-number-3">7.4</span> What HOG feature do you compute ?</h3>
-<div class="outline-text-3" id="text-7-4">
+<div id="outline-container-7-5" class="outline-3">
+<h3 id="sec-7-5"><span class="section-number-3">7.5</span> What HOG feature do you compute ?</h3>
+<div class="outline-text-3" id="text-7-5">
 
 <p>   It is based on the paper
 </p><ul>
@@ -475,23 +489,23 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 
 <p>
-It is different from the HOG popularized by the "Pedestrian detection"
-   application from Navneet Dalal's paper (N. Dalal and B. Triggs,
-   "<i>Histograms of oriented gradients for human detection</i>", CVPR
-   2005).
+ It is different from the HOG popularized by the "Pedestrian
+ detection" application from Navneet Dalal's paper (N. Dalal and
+ B. Triggs, "<i>Histograms of oriented gradients for human detection</i>",
+ CVPR 2005).
 </p>
 <p>
-   This latest reincarnation of the HOG feature is generally considered
-    to be more discriminative than the earlier versions, for object
-    detection tasks.  
+   This latest reincarnation of the HOG feature is generally
+    considered to be more discriminative than the earlier versions,
+    for object detection tasks.
 </p>
 </div>
 
 </div>
 
-<div id="outline-container-7-5" class="outline-3">
-<h3 id="sec-7-5"><span class="section-number-3">7.5</span> Is this library thread-safe ?</h3>
-<div class="outline-text-3" id="text-7-5">
+<div id="outline-container-7-6" class="outline-3">
+<h3 id="sec-7-6"><span class="section-number-3">7.6</span> Is this library thread-safe ?</h3>
+<div class="outline-text-3" id="text-7-6">
 
 <p>   Unfortunately, no. The reason has to do with the ISPC task
    implementation. A request for changing this has been filed (
@@ -529,9 +543,10 @@ It is different from the HOG popularized by the "Pedestrian detection"
 <div class="outline-text-3" id="text-8-2">
 
 <ul>
-<li>Fix dependency issues on GCC and Linux.
+<li>Fix dependency issues on GCC and Linux. The <code>__expect</code> macros, and
+  <code>memalign</code> calls need to be changed.
 </li>
-<li>32 bit binary for ISPC ?
+<li>Include a 32 bit binary for ISPC ?
 </li>
 <li><code>parameters-&gt;flipImage</code> to be implemented.
 </li>

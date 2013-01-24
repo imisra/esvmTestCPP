@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	
 	const char *imageName = "../sample-data/aeroplane.jpg";
 	const char *descFile = "../sample-data/exemplars/exemplar-txt-files-list";
-	int numExemplars = 11;
+	int numExemplars = 20;
 	
 	//this image is loaded only for display purposes. SIMEWrapper loads its own image.
 	IplImage *img = cvLoadImage(imageName,CV_LOAD_IMAGE_COLOR);
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 	
 	//get default parameters for classification
 	esvmParameters *params = esvmDefaultParameters();
-	params->detectionThreshold = -0.97;
+	params->detectionThreshold = -1.0;
 	
 	esvmOutput *output = esvmSIMEWrapper(params,imageName,model);
 	

@@ -7,7 +7,9 @@
 Version: 0.1 alpha^{2}
 Project Page: https://github.com/imisra/esvmTestCPP
 
-* Tech Report
+* HOG and Spatial Convolution on SIMD Architecture
+  Authors: Ishan Misra, Abhinav Shrivastava, Martial Hebert.
+  
   The details and aim of this project can be found in our tech
   report. Please cite it if you use this code for any purpose. The
   code can be downloaded freely from our [[https://github.com/imisra/esvmTestCPP][github project page]].
@@ -172,6 +174,10 @@ Project Page: https://github.com/imisra/esvmTestCPP
    Read the Tech-Report for more details on how the performance
    compares to the MATLAB testing pipeline.
 * FAQs
+** The detection demos aren't even close to perfect
+   Yes. It is just a demo. You will need to adjust the thresholds
+   depending on your particular dataset/exemplars.
+   
 ** You keep mentioning =C++=, but all of your programming is =C= style!
    Correct. I mention =C++= because I did use a few =STL=
    libraries. There were a few headaches using =C++=
@@ -189,10 +195,10 @@ Project Page: https://github.com/imisra/esvmTestCPP
     "/Object detection with discriminatively trained part based models/",
     PAMI 2010
 
-   It is different from the HOG popularized by the "Pedestrian detection"
-   application from Navneet Dalal's paper (N. Dalal and B. Triggs,
-   "/Histograms of oriented gradients for human detection/", CVPR
-   2005).
+ It is different from the HOG popularized by the "Pedestrian
+ detection" application from Navneet Dalal's paper (N. Dalal and
+ B. Triggs, "/Histograms of oriented gradients for human detection/",
+ CVPR 2005).
 
    This latest reincarnation of the HOG feature is generally
     considered to be more discriminative than the earlier versions,
