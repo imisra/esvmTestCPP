@@ -210,7 +210,11 @@ Project Page: https://github.com/imisra/esvmTestCPP
    https://groups.google.com/forum/#!topic/ispc-users/FgQgCVFMWTs) and
    as soon as this gets fixed, the library should be thread-safe.
 * Code TODOs
-** High priority  
+** High priority
+- BLOCK convolution: Model convolution as matrix multiplication and
+  use ATLAS for performing the matrix multiplication. Hope to achieve
+  speeds comparable to the MATLAB design.
+- Reduce memory reads/writes in NMS
 - Better I/O format for Exemplars. This will involve changing the
   =read/write= functions in MATLAB and C++. No changes expected in the
   API. I need feedback from users as to what they would like!

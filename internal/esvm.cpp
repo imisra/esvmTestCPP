@@ -524,6 +524,10 @@ esvmHogPyr *computeHogScale(IplImage *img,const int cellWidth,
 		
 		pyr[i-1] = computeHog(im, nr, nc, numChannels, cellWidth,
 				enablePadding, padding, userTasks);
+
+		if(__unlikely(pyr[i-1]==NULL))
+			break;
+
 		counter++;
 		
 		if(useMexResize==false)		

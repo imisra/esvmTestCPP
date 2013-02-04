@@ -15,7 +15,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	const char *imageName = "../sample-data/apples.jpg";
+	const char *imageName = "../sample-data/aeroplane.jpg";
 	const char *outputFile = "demo01-hog.txt";
 	printf("Computing HoG Pyramid ... ");
 	esvmHogPyr *hogpyr = computeHogScaleWrapper(imageName);
