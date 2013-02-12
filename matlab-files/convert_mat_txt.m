@@ -20,7 +20,7 @@ for i=3:numFiles
 	fname = files(i).name;
     baseName = strrep(fname,'.mat','');	
 	inpName = strcat(inpDir,fname);
-	models = loadSingleVariableMAT(inpName);
+	load(inpName);
 	numWs = size(models,2);
     fprintf('Processing %s\n',inpName);
     

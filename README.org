@@ -173,6 +173,24 @@ Project Page: https://github.com/imisra/esvmTestCPP
 ** Performance characteristics   
    Read the Tech-Report for more details on how the performance
    compares to the MATLAB testing pipeline.
+
+** Getting more Exemplars
+   Supposing you have an Exemplar-SVM trained in a =.mat= file.
+   Follow these steps
+   - place the =.mat= files in the directory
+     =sample-data/exemplars/exemplar-mat-files/=.
+   - run the MATLAB script at =matlab-files/convert_mat_txt.m=.
+   - you should now have the updated descriptor file
+     =sample-data/exemplars/exemplar-txt-files-list=. Additionally
+     there will be files corresponding to the models in the directory
+     =sample-data/exemplars/=. All the models should be present as
+     =txt= files in =sample-data/exemplars/exemplar-txt-files/=. Read
+     Section [[Input format for Exemplars]] to know what these files mean.
+   - Now you can place your code in the =demos= directory. Refer to
+     =demo03.cpp= for a quick way to get started.
+
+   Tomasz has a collection of trained exemplars on his [[http://people.csail.mit.edu/tomasz/exemplarsvm/models/][webpage]]. These
+   might be a quick way to get started.
 * FAQs
 ** The detection demos aren't even close to perfect
    Yes. It is just a demo. You will need to adjust the thresholds

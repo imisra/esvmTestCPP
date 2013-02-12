@@ -420,6 +420,39 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 <p>   Read the Tech-Report for more details on how the performance
    compares to the MATLAB testing pipeline.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-6" class="outline-3">
+<h3 id="sec-6-6"><span class="section-number-3">6.6</span> Getting more Exemplars</h3>
+<div class="outline-text-3" id="text-6-6">
+
+<p>   Supposing you have an Exemplar-SVM trained in a <code>.mat</code> file.
+   Follow these steps
+</p><ul>
+<li>place the <code>.mat</code> files in the directory
+     <code>sample-data/exemplars/exemplar-mat-files/</code>.
+</li>
+<li>run the MATLAB script at <code>matlab-files/convert_mat_txt.m</code>.
+</li>
+<li>you should now have the updated descriptor file
+     <code>sample-data/exemplars/exemplar-txt-files-list</code>. Additionally
+     there will be files corresponding to the models in the directory
+     <code>sample-data/exemplars/</code>. All the models should be present as
+     <code>txt</code> files in <code>sample-data/exemplars/exemplar-txt-files/</code>. Read
+     Section <a href="#sec-6-1">Input format for Exemplars</a> to know what these files mean.
+</li>
+<li>Now you can place your code in the <code>demos</code> directory. Refer to
+     <code>demo03.cpp</code> for a quick way to get started.
+</li>
+</ul>
+
+
+<p>
+   Tomasz has a collection of trained exemplars on his <a href="http://people.csail.mit.edu/tomasz/exemplarsvm/models/">webpage</a>. These
+   might be a quick way to get started.
 </p></div>
 </div>
 
