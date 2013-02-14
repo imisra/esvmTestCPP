@@ -173,29 +173,20 @@ Project Page: https://github.com/imisra/esvmTestCPP
 ** Performance characteristics   
    Read the Tech-Report for more details on how the performance
    compares to the MATLAB testing pipeline.
-
-** Getting more Exemplars
-   Supposing you have an Exemplar-SVM trained in a =.mat= file.
-   Follow these steps
-   - place the =.mat= files in the directory
-     =sample-data/exemplars/exemplar-mat-files/=.
-   - run the MATLAB script at =matlab-files/convert_mat_txt.m=.
-   - you should now have the updated descriptor file
-     =sample-data/exemplars/exemplar-txt-files-list=. Additionally
-     there will be files corresponding to the models in the directory
-     =sample-data/exemplars/=. All the models should be present as
-     =txt= files in =sample-data/exemplars/exemplar-txt-files/=. Read
-     Section [[Input format for Exemplars]] to know what these files mean.
-   - Now you can place your code in the =demos= directory. Refer to
-     =demo03.cpp= for a quick way to get started.
-
-   Tomasz has a collection of trained exemplars on his [[http://people.csail.mit.edu/tomasz/exemplarsvm/models/][webpage]]. These
-   might be a quick way to get started.
 * FAQs
 ** The detection demos aren't even close to perfect
    Yes. It is just a demo. You will need to adjust the thresholds
    depending on your particular dataset/exemplars.
-   
+
+** I am getting an =Illegal Instruction= when running demos on a Virtual Machine
+   This happens because a lot of the VMs do not support =avx= or
+   =sse4-2= instructions. In the =Makefile= set the variables
+   =ISPCARCHFLAGS= and =ARCHFLAGS= to blank (i.e. just delete whatever
+   is front of them, but keep the "=" sign). This should generally resolve the issue. This of
+   course means that you are not using SIMD code now.
+
+   You can try setting the =ARCHFLAGS= to blank and =ISPCARCHFLAGS= to
+   =--target=sse2= or =--target=sse4=.
 ** You keep mentioning =C++=, but all of your programming is =C= style!
    Correct. I mention =C++= because I did use a few =STL=
    libraries. There were a few headaches using =C++=

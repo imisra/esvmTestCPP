@@ -420,39 +420,6 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 <p>   Read the Tech-Report for more details on how the performance
    compares to the MATLAB testing pipeline.
-</p>
-</div>
-
-</div>
-
-<div id="outline-container-6-6" class="outline-3">
-<h3 id="sec-6-6"><span class="section-number-3">6.6</span> Getting more Exemplars</h3>
-<div class="outline-text-3" id="text-6-6">
-
-<p>   Supposing you have an Exemplar-SVM trained in a <code>.mat</code> file.
-   Follow these steps
-</p><ul>
-<li>place the <code>.mat</code> files in the directory
-     <code>sample-data/exemplars/exemplar-mat-files/</code>.
-</li>
-<li>run the MATLAB script at <code>matlab-files/convert_mat_txt.m</code>.
-</li>
-<li>you should now have the updated descriptor file
-     <code>sample-data/exemplars/exemplar-txt-files-list</code>. Additionally
-     there will be files corresponding to the models in the directory
-     <code>sample-data/exemplars/</code>. All the models should be present as
-     <code>txt</code> files in <code>sample-data/exemplars/exemplar-txt-files/</code>. Read
-     Section <a href="#sec-6-1">Input format for Exemplars</a> to know what these files mean.
-</li>
-<li>Now you can place your code in the <code>demos</code> directory. Refer to
-     <code>demo03.cpp</code> for a quick way to get started.
-</li>
-</ul>
-
-
-<p>
-   Tomasz has a collection of trained exemplars on his <a href="http://people.csail.mit.edu/tomasz/exemplarsvm/models/">webpage</a>. These
-   might be a quick way to get started.
 </p></div>
 </div>
 
@@ -477,8 +444,25 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 </div>
 
 <div id="outline-container-7-2" class="outline-3">
-<h3 id="sec-7-2"><span class="section-number-3">7.2</span> You keep mentioning <code>C++</code>, but all of your programming is <code>C</code> style!</h3>
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> I am getting an <code>Illegal Instruction</code> when running demos on a Virtual Machine</h3>
 <div class="outline-text-3" id="text-7-2">
+
+<p>   This happens because a lot of the VMs do not support <code>avx</code> or
+   <code>sse4-2</code> instructions. In the <code>Makefile</code> set the variables
+   <code>ISPCARCHFLAGS</code> and <code>ARCHFLAGS</code> to blank (i.e. just delete whatever
+   is front of them, but keep the "=" sign). This should generally resolve the issue. This of
+   course means that you are not using SIMD code now.
+</p>
+<p>
+   You can try setting the <code>ARCHFLAGS</code> to blank and <code>ISPCARCHFLAGS</code> to
+   <code>--target=sse2</code> or <code>--target=sse4</code>.
+</p></div>
+
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> You keep mentioning <code>C++</code>, but all of your programming is <code>C</code> style!</h3>
+<div class="outline-text-3" id="text-7-3">
 
 <p>   Correct. I mention <code>C++</code> because I did use a few <code>STL</code>
    libraries. There were a few headaches using <code>C++</code>
@@ -488,9 +472,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-3" class="outline-3">
-<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Can I use this for HOG computation only ?</h3>
-<div class="outline-text-3" id="text-7-3">
+<div id="outline-container-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> Can I use this for HOG computation only ?</h3>
+<div class="outline-text-3" id="text-7-4">
 
 <p>   Yes. Check out examples (<code>demo01</code>, <code>demo02</code>) in the <code>demo</code> directory.
 </p>
@@ -498,9 +482,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-4" class="outline-3">
-<h3 id="sec-7-4"><span class="section-number-3">7.4</span> Can I use this for Convolution computation only ?</h3>
-<div class="outline-text-3" id="text-7-4">
+<div id="outline-container-7-5" class="outline-3">
+<h3 id="sec-7-5"><span class="section-number-3">7.5</span> Can I use this for Convolution computation only ?</h3>
+<div class="outline-text-3" id="text-7-5">
 
 <p>   Yes. Check out examples (<code>demo00</code>) in the <code>demos</code> directory.
 </p>
@@ -508,9 +492,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-5" class="outline-3">
-<h3 id="sec-7-5"><span class="section-number-3">7.5</span> What HOG feature do you compute ?</h3>
-<div class="outline-text-3" id="text-7-5">
+<div id="outline-container-7-6" class="outline-3">
+<h3 id="sec-7-6"><span class="section-number-3">7.6</span> What HOG feature do you compute ?</h3>
+<div class="outline-text-3" id="text-7-6">
 
 <p>   It is based on the paper
 </p><ul>
@@ -536,9 +520,9 @@ Project Page: <a href="https://github.com/imisra/esvmTestCPP">https://github.com
 
 </div>
 
-<div id="outline-container-7-6" class="outline-3">
-<h3 id="sec-7-6"><span class="section-number-3">7.6</span> Is this library thread-safe ?</h3>
-<div class="outline-text-3" id="text-7-6">
+<div id="outline-container-7-7" class="outline-3">
+<h3 id="sec-7-7"><span class="section-number-3">7.7</span> Is this library thread-safe ?</h3>
+<div class="outline-text-3" id="text-7-7">
 
 <p>   Unfortunately, no. The reason has to do with the ISPC task
    implementation. A request for changing this has been filed (
