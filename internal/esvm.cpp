@@ -519,7 +519,8 @@ esvmHogPyr *computeHogScale(IplImage *img,const int cellWidth,
 			im = RgbtoIm(dst,(int)nr,(int)nc,numChannels);
 		}
 		else {			
-			im = mexResize(flIm,numRows,numCols,numChannels,numRows*scale,numCols*scale); 
+			//im = mexResize(flIm,numRows,numCols,numChannels,numRows*scale,numCols*scale); 
+			im = mexResize(flIm,numRows,numCols,numChannels,nr,nc); 
 		}
 		
 		pyr[i-1] = computeHog(im, nr, nc, numChannels, cellWidth,
