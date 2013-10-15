@@ -96,7 +96,7 @@ void psort(float* in, int m, int K, float* out0, int* out1);
 
 //nms
 void nms(float *boxes, const int numBoxes, const float overlapThreshold,
-		int *numPruned, float *pruned);
+		int *numPruned, float **pruned);
 
 //pipeline
 esvmOutput *esvmSIMEWrapper(esvmParameters *params, const char *imageName, esvmModel *model);
