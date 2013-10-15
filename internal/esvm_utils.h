@@ -50,7 +50,7 @@
 
 //to access bounding boxes
 #define ESVM_BOX_DIM 8
-#define ARR_I(arr,i) (arr+i*ESVM_BOX_DIM)
+#define ARR_I(arr,i) (arr+(i)*ESVM_BOX_DIM)
 
 #define ARR_RMIN_P(arr) (*(arr))
 #define ARR_CMIN_P(arr) (*(arr+1))
